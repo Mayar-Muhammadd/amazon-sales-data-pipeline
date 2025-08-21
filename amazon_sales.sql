@@ -1,0 +1,29 @@
+ALTER TABLE DIM_PRODUCT
+ADD CONSTRAINT pk_product PRIMARY KEY ("product_id")
+-- Customer
+ALTER TABLE DIM_CUSTOMER
+ADD CONSTRAINT pk_customer PRIMARY KEY ("customer_id");
+-- Order
+ALTER TABLE DIM_ORDER
+ADD CONSTRAINT pk_order PRIMARY KEY ("order_id");
+-- Link to DIM_PRODUCT
+ALTER TABLE FACT_SALES
+ADD CONSTRAINT fk_product
+FOREIGN KEY ("product_id")
+REFERENCES DIM_PRODUCT("product_id");
+-- Link to DIM_CUSTOMER
+ALTER TABLE FACT_SALES
+ADD CONSTRAINT fk_customer
+FOREIGN KEY ("customer_id")
+REFERENCES DIM_CUSTOMER("customer_id");
+-- Link to DIM_ORDER
+ALTER TABLE FACT_SALES
+ADD CONSTRAINT fk_order
+FOREIGN KEY ("order_id")
+REFERENCES DIM_ORDER("order_id");
+
+
+select * from AMAZON_SALES.SCHEMA.DIM_CUSTOMER limit 10;
+
+;
+
